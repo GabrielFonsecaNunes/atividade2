@@ -7,21 +7,21 @@ import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
 
-def set_blur(img):
+def apply_blur(img):
     """
     Args:
         img (np.Array):
     """
     return cv.blur(img, (3, 3))
 
-def set_gaussian_blur(img):
+def apply_gaussian_blur(img):
     """
     Args:
         img (np.Array):
     """
     return cv.GaussianBlur(img, (3, 3), 0)
 
-def set_median_blur(img):
+def apply_median_blur(img):
     """
     Plota Filtro mediano
     Args:
@@ -29,7 +29,7 @@ def set_median_blur(img):
     """
     return cv.medianBlur(img, 5)
 
-def set_bilateral_filter(img):
+def apply_bilateral_filter(img):
     """
     Filtro Bilateral
     Args:
@@ -52,17 +52,17 @@ while True:
     # Display the resulting frame
     cv.imshow('Original', frame)
 
-    # # Display the resulting frame
-    # cv.imshow('Blur', set_blur(frame))
+    # Display the resulting frame
+    cv.imshow('Blur', apply_blur(frame))
 
-    # # Display the resulting frame
-    # cv.imshow('Gaussian Filter', set_gaussian_blur(frame))
-    
-    # # Display the resulting frame
-    # cv.imshow('Median Filter', set_median_blur(frame))
+    # Display the resulting frame
+    cv.imshow('Gaussian Filter', apply_gaussian_blur(frame))
     
     # Display the resulting frame
-    cv.imshow('Bilateral Filter', set_bilateral_filter(frame))
+    cv.imshow('Median Filter', apply_median_blur(frame))
+    
+    # Display the resulting frame
+    cv.imshow('Bilateral Filter', apply_bilateral_filter(frame))
 
     if cv.waitKey(1) == ord('q'):
         break
