@@ -1,11 +1,8 @@
 import numpy as np
 import cv2 as cv
-
-cap = cv.VideoCapture(0)
-
-import numpy as np
-import cv2 as cv
 import matplotlib.pyplot as plt
+
+cap = cv.VideoCapture(1)
 
 def apply_blur(img):
     """
@@ -54,6 +51,7 @@ while True:
 
     # Display the resulting frame
     cv.imshow('Blur', apply_blur(frame))
+    
 
     # Display the resulting frame
     cv.imshow('Gaussian Filter', apply_gaussian_blur(frame))
@@ -65,6 +63,11 @@ while True:
     cv.imshow('Bilateral Filter', apply_bilateral_filter(frame))
 
     if cv.waitKey(1) == ord('q'):
+        cv.imwrite('Imagem.jpg', frame)
+        cv.imwrite('BlurFiltroMedia.jpg', apply_blur(frame))    
+        cv.imwrite('BlurFitroGaussiano.jpg', apply_gaussian_blur(frame))   
+        cv.imwrite('BlurFiltroMediano.jpg', apply_median_blur(frame))  
+        cv.imwrite('BlurFitroBilateral.jpg', apply_bilateral_filter(frame))    
         break
 
 # When everything done, release the capture

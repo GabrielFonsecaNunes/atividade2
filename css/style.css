@@ -74,8 +74,8 @@ p {
 }
 
 .fluxograma {
-    width: 32%;
-    height: 22%;
+    width: auto;
+    height: 20%;
     text-align: center;
     object-fit: cover;
     margin-bottom: 10px;
@@ -88,4 +88,18 @@ p {
     font-size: 16px;
     line-height: 1.5;
     margin-top: 15px;
+}
+
+.img {
+    width: 80%; /* A imagem ocupará 100% da largura do elemento pai */
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid rgb(61, 60, 60); /* Define a cor preta para a borda */
+}
+
+.cap {
+    width: 40%; /* A imagem ocupará 100% da largura do elemento pai */
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid rgb(61, 60, 60); /* Define a cor preta para a borda */
 }

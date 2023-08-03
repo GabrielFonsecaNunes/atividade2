@@ -27,7 +27,7 @@
     </p>
   </div>
 
-  <h1>Atividade 1</h1>
+  <h1>Atividade 2</h1>
 
   <div class="section">
     <h2 class="section-title">Introdução</h2>
@@ -140,12 +140,10 @@
     </p class="section-content"> 
 
     <h2 class="section-title">Métodos</h2>
-
     <p class="section-content">
-      Nesta primeira parte do trabalho foi desenvolvido o programa que faz a leitura e aplicação do filtro na imagem. 
-      Abaixo segue o programa desenvolvido juntamente com a descrição do seu funcionamento com diagramas de blocos.  
-    </p>
-    
+      Nesta primeira parte do trabalho foi desenvolvido o programa que faz a leitura e aplicação de varios filtros na imagem messi5.jpg. 
+      Abaixo segue o programa l2_fitros.py desenvolvido juntamente com a descrição do seu funcionamento com diagramas de blocos.  
+    </p>    
     <div class="title">L2_filtros.py</div>
     <div class="code-container" id="component-1">
       <textarea readonly>
@@ -247,26 +245,162 @@ plot_bilateral_filter(img, save= True)
     </div>
     <div class="title">Diagrama de Blocos L1_filtros.py</div>
     <div>
-      <img src="./img/diagrama_imagem.jpeg" alt="Diagrama" class="fluxograma">
+      <img src="./img/diagrama_l2_filtros.py.jpg" alt="Diagrama" class="fluxograma">
     </div>
     <div class="section-content">
-      Comentario... resultados
+      Abaixo segue o plote da comparação da imagem do messi5.jpg original com os diversos tipos de filtros:
+    </div>
+    <div class="title">Comparação Messi Original vs Blur Filtro de Media</div>
+    <div class="section-content">
+      <img src="img/Blur Media.jpg" alt="Diagrama" class="img">
+    </div>
+    <div class="title">Comparação Messi Original vs Blur Filtro Gaussaino</div>
+    <div class="section-content">
+      <img src="img/FiltroGaussiano.jpg" alt="Diagrama" class="img">
+    </div>
+    <div class="title">Comparação Messi Original vs Blur Filtro Mediano</div>
+    <div class="section-content">
+      <img src="img/FiltroMediano.jpg" alt="Diagrama" class="img">
+    </div>
+    <div class="title">Comparação Messi Original vs Blur Filtro Bilateral</div>
+    <div class="section-content">
+      <img src="img/Bilateral.jpg" alt="Diagrama" class="img">
+    </div>
+    <div class="section-content">
+      Na parte 2 do trabalho, foi desenvolvido o programa que faz a leitura da web cam e faz aplicação de varios 
+      filtros na imagem captura.Quando for apertado a tecla 'q' é feito a captura da imagem e salva. Abaixo segue
+      o programa l2_webcam.py desenvolvido juntamente com a descrição do seu funcionamento com diagramas de blocos. 
+    </div>
+    <div class="title">L2_webcam.py</div>
+    <div class="code-container" id="component-1">
+      <textarea readonly>
+  import numpy as np
+  import cv2 as cv
+  import matplotlib.pyplot as plt
+  
+  cap = cv.VideoCapture(1)
+  
+  def apply_blur(img):
+      """
+      Args:
+          img (np.Array):
+      """
+      return cv.blur(img, (3, 3))
+  
+  def apply_gaussian_blur(img):
+      """
+      Args:
+          img (np.Array):
+      """
+      return cv.GaussianBlur(img, (3, 3), 0)
+  
+  def apply_median_blur(img):
+      """
+      Plota Filtro mediano
+      Args:
+          img (np.Array):
+      """
+      return cv.medianBlur(img, 5)
+  
+  def apply_bilateral_filter(img):
+      """
+      Filtro Bilateral
+      Args:
+          img (np.Array):
+      """
+      return cv.bilateralFilter(img, 9, 75, 75)
+  
+  if not cap.isOpened():
+      print("Cannot open camera")
+      exit()
+      
+  while True:
+      # Capture frame-by-frame
+      ret, frame = cap.read()
+      # if frame is read correctly ret is True
+      if not ret:
+          print("Can't receive frame (stream end?). Exiting ...")
+          break
+  
+      # Display the resulting frame
+      cv.imshow('Original', frame)
+  
+      # Display the resulting frame
+      cv.imshow('Blur', apply_blur(frame))
+      
+  
+      # Display the resulting frame
+      cv.imshow('Gaussian Filter', apply_gaussian_blur(frame))
+      
+      # Display the resulting frame
+      cv.imshow('Median Filter', apply_median_blur(frame))
+      
+      # Display the resulting frame
+      cv.imshow('Bilateral Filter', apply_bilateral_filter(frame))
+  
+      if cv.waitKey(1) == ord('q'):
+          cv.imwrite('Imagem.jpg', frame)
+          cv.imwrite('BlurFiltroMedia.jpg', apply_blur(frame))    
+          cv.imwrite('BlurFitroGaussiano.jpg', apply_gaussian_blur(frame))   
+          cv.imwrite('BlurFiltroMediano.jpg', apply_median_blur(frame))  
+          cv.imwrite('BlurFitroBilateral.jpg', apply_bilateral_filter(frame))    
+          break
+  
+  # When everything done, release the capture
+  cap.release()
+  cv.destroyAllWindows()
+      </textarea>
+      <button class="copy-button" onclick="copyCode('component-1')">Copiar</button>
+    </div>
+    <div class="section-content">
+      <img src="img/diagrama_l2_webcam.py.jpg" alt="Diagrama" class="img">
+    </div>
+    <div class="section-content">
+      Segue a baixo o resultado da aplicação dos filtros na captura de imagem com webcam:
+    </div>
+    <div class="section">
+    <div class="title">Imagem Livro Arte da Guerra Autor</div>
+    <div class="section-content">
+      <img src="img/Imagem.jpg" alt="Diagrama" class="cap">
+    </div>
+    <div class="title">Imagem Livro Arte da Guerracom Filtro Media</div>
+    <div class="section-content">
+      <img src="img/BlurFiltroMedia.jpg" alt="Diagrama" class="cap">
+    </div>
+    <div class="title">Imagem Livro Arte da Guerra com Filtro Gaussaino</div>
+    <div class="section-content">
+      <img src="img/BlurFitroGaussiano.jpg" alt="Diagrama" class="cap">
+    </div>
+    <div class="title">Imagem Livro Arte da Guerra com Filtro Mediano</div>
+    <div class="section-content">
+      <img src="img/BlurFiltroMediano.jpg" alt="Diagrama" class="cap">
+    </div>
+    <div class="title">Imagem Livro Arte da Guerra com Filtro Bilateral</div>
+    <div class="section-content">
+      <img src="img/BlurFiltroBilateral.jpg" alt="Diagrama" class="cap">
     </div>
   </div>
-  <div class="section">
     <h2 class="section-title">Resultados e Análises</h2>
     <p class="section-content">
       Durante a execução das atividades propostas, foram obtidos os seguintes resultados:
     </p>
     <p class="section-content">
-      ...
+      O código apresentado contém a implementação de várias técnicas de suavização de imagem usando OpenCV e Matplotlib. 
+      As diferentes técnicas de filtragem aplicadas às imagens são as seguintes: 
+      <p class="section-content"> Gaussian Blur: Esta técnica aplica um kernel gaussiano à imagem, o que ajuda a reduzir o ruído e suavizar a imagem. 
+        É comumente usado para tarefas de pré-processamento de imagens. Desfoque mediano: esta técnica substitui o valor de cada pixel pelo valor mediano de seus pixels vizinhos. É eficaz na
+        remoção de ruído de sal e pimenta da imagem. Filtro Bilateral: O filtro bilateral preserva as bordas enquanto suaviza o restante da imagem. Ele considera as diferenças
+        espaciais e de intensidade entre os pixels e é útil para redução de ruído, preservando características importantes da imagem.
+      </p class="section-content">
+      </p>
     </p>
   </div>
 
   <div class="section">
     <h2 class="section-title">Conclusões e Comentários Finais</h2>
     <p class="section-content">
-      Neste laboratório, ... .
+      Neste laboratório, aprendemos como aplicar o métodos de filtragens utilizando a biblioteca do opencv e consequimos verifica cada caso de uso de cada filtro em específico.
+      
     </p>
   </div>
 
@@ -284,5 +418,4 @@ plot_bilateral_filter(img, save= True)
     </ol>
   </div>
 </body>
-
 </html>
